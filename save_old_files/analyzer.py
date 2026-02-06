@@ -10,7 +10,8 @@ from confirmations import ConfirmationSystem
 from signals import SignalGenerator, TradingSignal
 from logger import app_logger, signal_logger, perf_logger
 from config import config
-from models import Zone  
+from models import Zone
+
 
 class AdvancedZoneAnalyzer:
     def __init__(self):

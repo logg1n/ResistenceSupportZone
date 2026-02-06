@@ -95,21 +95,22 @@ class Zone:
 
 # models.py - обновленная часть
 
+
 @dataclass
 class MarketState:
     """Состояние рынка для конкретного ТФ"""
-    
+
     def __init__(self, max_candles: int = 500):
         self.candles: Deque[Dict] = deque(maxlen=max_candles)
         self.orderbook: Dict = {}
         self.recent_trades: Deque[Dict] = deque(maxlen=1000)
         self.active_zones: List[Zone] = []
-    
+
     def add_candle(self, candle: Dict, timeframe: str):
         """Универсальный метод добавления свечи"""
         if not self._validate_candle(candle):
             app_logger.warning(f"Invalid candle for TF {timeframe}: {candle}")
             return
-        
-        candle['timestamp'] = datetime.now()
+
+        candle["timestamp"] = datetime.now()
         self.candles.append(candle)
